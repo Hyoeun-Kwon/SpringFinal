@@ -1,0 +1,36 @@
+package com.watchdogs.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.watchdogs.command.home.BCommand_new;
+import com.watchdogs.command.notice.NoticeListCommand;
+
+@Controller
+public class NoticeController {
+	
+//	@Autowired
+//	private SqlSession sqlSession;
+//	
+//	BCommand_new command = null;
+//	
+//	
+//	@RequestMapping("/noticelist.wd")
+//	public String noticelist(HttpServletRequest request, Model model) {
+//		System.out.println("noticeList 진입");
+//		command = new NoticeListCommand();
+//		command.execute(sqlSession, model);
+//		return "noticelist";
+//	}
+//	
+
+
+	
+	
+	
+}

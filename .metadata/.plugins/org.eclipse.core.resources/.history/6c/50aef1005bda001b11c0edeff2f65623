@@ -1,0 +1,30 @@
+package com.springlec.baseoneline.dao;
+
+import java.util.ArrayList;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.springlec.baseoneline.dto.BDto;
+import com.springlec.baseoneline.util.Constant;
+
+public class BDao {
+	
+	
+	JdbcTemplate template;
+	
+	//Constructor 
+	public BDao() {
+		this.template = Constant.template;
+	}
+	
+	public ArrayList<BDto> list(){
+		System.out.println("Dao_list");
+		
+		String query = "SELECT * FROM mvc_board";
+
+		return (ArrayList<BDto>) template.query(query, new BeanPropertyRowMapper<BDto>(BDto.class));
+		
+	}
+
+}

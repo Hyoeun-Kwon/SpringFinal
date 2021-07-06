@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Batis 주소록 리스트</title>
+</head>
+<body>
+<table width="500" cellpadding="0" cellspacing="0" border="1">
+	<tr>
+		<td>번호</td>
+		<td>이름</td>
+		<td>전화번호</td>
+		<td>주소</td>
+		<td>전자우편</td>
+		<td>관계</td>
+	<tr>
+	<c:forEach items="${list}" var="dto">
+	<tr>
+		<td><a href="view?mId=${dto.seqno}">${dto.seqno}</a></td>
+		<td>${dto.name}</td>
+		<td>${dto.telno}</td>
+		<td>${dto.address}</td>
+		<td>${dto.email}</td>
+		<td>${dto.relation}</td>
+		<td><a href="delete?mId=${dto.mId}">X</a></td>
+	<tr>
+	</c:forEach>
+</table>
+<p><a href="writeForm">주소록 등록</a></p>
+
+</body>
+</html>

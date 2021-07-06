@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+ <mapper namespace="com.watchdogs.dao.ReviewDao">
+ 
+ <select id="reviewlist" resultType="com.watchdogs.dto.ReviewDto">
+	SELECT REID, REHIT, USERID, RETITLE, RECONTENT, REDATE, REDELDATE FROM REVIEW 
+	 <!-- SELECT * FROM REVIEW  -->
+ </select>
+ 
+ <insert id="review_write">
+ 		INSERT INTO REVIEW (RETITLE, RECONTENT, REDATE, USERID, REFILEPATH) VALUES (#{param1}, #{param2}, now(), #{param4}, #{param5})
+		<!-- INSERT INTO USERINFO (NAME, TELNO, ADDRESS, EMAIL, RELATION) VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}) -->
+	</insert>
+
+ </mapper>

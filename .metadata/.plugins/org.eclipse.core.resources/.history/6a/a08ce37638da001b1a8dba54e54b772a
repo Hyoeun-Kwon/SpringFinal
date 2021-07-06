@@ -1,0 +1,5 @@
+package com.springlec.baseoneline.command;
+
+public interface BCommand {
+
+}

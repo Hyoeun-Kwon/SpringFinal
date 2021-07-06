@@ -1,0 +1,5 @@
+package com.springlec.base0801quiz.command;
+
+public interface BCommand {
+
+}

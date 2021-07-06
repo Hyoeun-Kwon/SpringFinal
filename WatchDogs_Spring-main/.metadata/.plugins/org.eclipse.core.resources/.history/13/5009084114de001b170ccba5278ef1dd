@@ -1,0 +1,39 @@
+package com.watchdogs.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.watchdogs.command.home.BCommand_new;
+import com.watchdogs.command.review.ReviewListCommand;
+
+@Controller
+public class ReviewController {
+	
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	BCommand_new command = null;
+	
+	
+	@RequestMapping("/reviewlist")
+	public String reviewlist(HttpServletRequest request, Model model) {
+		System.out.println("reviewList 진입");
+		command = new ReviewListCommand();
+		command.execute(sqlSession, model);
+		return "reviewlist";
+	}
+	
+	@RequestMapping("review")
+	public String review() {
+		return "review_write";
+	}
+	
+
+
+}//---------

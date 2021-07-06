@@ -1,0 +1,56 @@
+package com.watchdogs.controller;
+
+import java.lang.ProcessBuilder.Redirect;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.watchdogs.command.home.BCommand_new;
+import com.watchdogs.command.review.ReviewListCommand;
+import com.watchdogs.command.review.ReviewWriteCommand;
+
+@Controller
+public class ReviewController {
+	
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	BCommand_new command = null;
+	
+	
+	@RequestMapping("/reviewlist")
+	public String reviewlist(HttpServletRequest request, Model model) {
+		System.out.println("reviewList 진입");
+		command = new ReviewListCommand();
+		command.execute(sqlSession, model);
+		return "reviewlist";
+	}
+	
+	@RequestMapping("review")
+	public String review() {
+		return "review_write";
+	}
+	
+	@RequestMapping("review_write")
+	public String review_write() {
+		System.out.println("reviewWrite 진입");
+		
+		return "redirect:reviewlist";
+	}
+	
+	
+//case("/review_write.wd"): // 작성 후 다시 후기 페이지로
+//	command = new ReviewWriteCommand();
+//	command.execute(request, response);
+//	viewPage = "reviewlist.wd"; 
+//	break;
+//	
+
+
+}//---------

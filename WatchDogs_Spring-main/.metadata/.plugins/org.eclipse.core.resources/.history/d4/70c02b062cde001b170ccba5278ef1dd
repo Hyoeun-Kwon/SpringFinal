@@ -1,0 +1,107 @@
+package com.watchdogs.controller;
+
+import java.lang.ProcessBuilder.Redirect;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.watchdogs.command.home.BCommand_new;
+import com.watchdogs.command.review.ReviewDetailViewCommand;
+import com.watchdogs.command.review.ReviewListCommand;
+import com.watchdogs.command.review.ReviewWriteCommand;
+import com.watchdogs.dao.ReviewDao;
+
+@Controller
+public class ReviewController {
+	
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	BCommand_new command = null;
+	
+	
+	//리뷰 리스트 보여주기
+	@RequestMapping("/reviewlist")
+	public String reviewlist(HttpServletRequest request, Model model) {
+		System.out.println("reviewList 진입");
+		command = new ReviewListCommand();
+		command.execute(sqlSession, model);
+		return "reviewlist";
+	}
+	
+	//글쓰기 작성시 글쓰기 폼으로 가기
+	@RequestMapping("/review")
+	public String review() {
+		return "review_write";
+	}
+	
+	//글쓰기 폼에서 입력후 후기작성 누르면 DB로 값 입력되게 하기
+	@RequestMapping("/review_write")
+	public String review_write(HttpServletRequest request) {
+		System.out.println("reviewWrite 진입");
+		//HttpServletRequest :  jsp 에서 값을 받아 올때 씀, 
+		//Model 은 jsp 로 값을 넘길때 사용하므로 얘는 model이 필요 없다.
+		//Command는 jsp에서 받아온 애들을 if문 등으로 조건을 달면서 길어지면 사용한다
+		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+		System.out.println("request get Parameter _ retitle" + request.getParameter("retitle"));
+		
+		dao.review_write(request.getParameter("retitle"), request.getParameter("recontent"), request.getParameter("redate"), request.getParameter("userid"), request.getParameter("refilepath"));
+		
+		return "redirect:reviewlist";
+	}
+	
+	//리스트에서 글 눌러 상세보기
+	@RequestMapping("/reviewdetail")
+	public String reviewdetail(HttpServletRequest request, Model model) {
+		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+		model.addAttribute("reviewdetail", dao.reviewdetail(Integer.parseInt(request.getParameter("reid"))));
+		
+		return "review_detailview";
+
+	}
+	
+	@RequestMapping("reviewmodify")
+	public String reviewmodify(HttpServletRequest request, Model model) {
+	ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+	dao.reviewmodify(Integer.parseInt(request.getParameter("reid")), request.getParameter("retitle"), request.getParameter("recontent"), request.getParameter("refilepath"));
+		
+		return "review_write";
+	}
+	
+	
+//	@RequestMapping("/modify")
+//	public String modify(HttpServletRequest request, Model model) {
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		dao.modifyDao(request.getParameter("name"), request.getParameter("telno"), request.getParameter("address"), request.getParameter("email"), request.getParameter("relation"), Integer.parseInt(request.getParameter("seqno")));
+//		//return "redirect:list";
+//		//dao.viewDao(Integer~~~("seqno") : 이 부분을 bean 에 넣고, 그 이름을 content_view로 정해주는 거임 
+//		// 그래서 이 addAttribute에 있는 이름으로 jsp에서 부를때 그 이름으로 씀
+//		model.addAttribute("content_view", dao.viewDao(Integer.parseInt(request.getParameter("seqno"))));
+//		return "content_view";
+//	}
+//	
+//	
+//	@RequestMapping("/delete")
+//	public String delete(HttpServletRequest request) {
+//		IDao dao = sqlSession.getMapper(IDao.class);
+//		dao.deleteDao(Integer.parseInt(request.getParameter("seqno")));
+//		return "redirect:list";
+//	}
+	
+	
+
+	
+//case("/reviewdetail.wd"): // review에 detail 데이터 불러오기 (후기 상세 페이지)
+//	command = new ReviewDetailViewCommand();
+//	command.execute(request, response);
+//	viewPage = "review_detailview.jsp";
+//	break;
+
+
+}//---------

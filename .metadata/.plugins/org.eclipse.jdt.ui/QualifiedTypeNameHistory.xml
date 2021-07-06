@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementCreator"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.util.Constant"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BListCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.dto.BDto"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BContentCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BDeleteCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BWriteCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.command.BUpdateCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0701.dao.BDao"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="com.springlec.baseoneline.dao.BDao"/>
+    <fullyQualifiedTypeName name="com.springlec.baseoneline.command.BCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.baseoneline.command.BListCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.JdbcTemplate"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
+    <fullyQualifiedTypeName name="com.springlec.baseoneline.dto.BDto"/>
+    <fullyQualifiedTypeName name="com.springlec.baseoneline.util.Constant"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementSetter"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801.dto.ContentDto"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801.dao.IDao"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801quiz.dto.IDto"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.BaseCommandController"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801quiz.command.BCommand"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801quiz.command.BListCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.springlec.base0801quiz.dao.IDao"/>
+</qualifiedTypeNameHistroy>

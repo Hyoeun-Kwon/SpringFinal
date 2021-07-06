@@ -1,0 +1,64 @@
+package com.watchdogs.controller;
+
+import java.lang.ProcessBuilder.Redirect;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.springlec.base0801quiz.dao.IDao;
+import com.watchdogs.command.home.BCommand_new;
+import com.watchdogs.command.review.ReviewListCommand;
+import com.watchdogs.command.review.ReviewWriteCommand;
+import com.watchdogs.dao.ReviewDao;
+
+@Controller
+public class ReviewController {
+	
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
+	BCommand_new command = null;
+	
+	
+	@RequestMapping("/reviewlist")
+	public String reviewlist(HttpServletRequest request, Model model) {
+		System.out.println("reviewList 진입");
+		command = new ReviewListCommand();
+		command.execute(sqlSession, model);
+		return "reviewlist";
+	}
+	
+	@RequestMapping("review")
+	public String review() {
+		return "review_write";
+	}
+	
+	@RequestMapping("review_write")
+	public String review_write(HttpServletRequest request) {
+		System.out.println("reviewWrite 진입");
+		//HttpServletRequest :  jsp 에서 값을 받아 올때 씀, 
+		//Model 은 jsp 로 값을 넘길때 사용하므로 얘는 model이 필요 없다.
+		//Command는 jsp에서 받아온 애들을 if문 등으로 조건을 달면서 길어지면 사용한다
+		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+//		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		dao.writeDao(request.getParameter("name"), request.getParameter("telno"), request.getParameter("address"), request.getParameter("email"), request.getParameter("relation"));
+		return "redirect:reviewlist";
+	}
+	
+	
+//case("/review_write.wd"): // 작성 후 다시 후기 페이지로
+//	command = new ReviewWriteCommand();
+//	command.execute(request, response);
+//	viewPage = "reviewlist.wd"; 
+//	break;
+//	
+
+
+}//---------

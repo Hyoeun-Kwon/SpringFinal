@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+      <!-- //com.springlec.base0801.dao의 IDao야  -->
+
+<mapper namespace="com.springlec.base0801quiz.dao.IDao">
+
+<!--  내 아이디는 IDao의 메소드이름이 listDao야 , 결과값은 resultType으로 저 Dto로 보내줘 // 그 보낸걸 controller에서 받음 -->
+	<select id="listDao" resultType="com.springlec.base0801quiz.dto.IDto">
+		SELECT * FROM USERINFO ORDER BY SEQNO DESC
+	</select>
+	
+	<insert id="writeDao">
+		INSERT INTO USERINFO (NAME, TELNO, ADDRESS, EMAIL, RELATION) VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+	</insert>
+	
+	<select id="viewDao" resultType="com.springlec.base0801quiz.dto.IDto">
+		SELECT * FROM USERINFO WHERE SEQNO = #{param1} 
+	</select>
+	
+	
+	<update id="modifyDao">
+		UPDATE USERINFO SET NAME = #{param1}, TELNO = #{param2}, ADDRESS = #{param3}, EMAIL = #{param4}, RELATION = #{param5} WHERE SEQNO = #{param6}
+	</update>
+	
+	<delete id="deleteDao">
+		DELETE FROM USERINFO WHERE SEQNO = #{param1}
+	</delete>
+	
+	<select id="listQuery" parameterType="String" resultType="com.springlec.base0801quiz.dto.IDto">
+		SELECT * FROM ADDRESS WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+		<!-- colomn 은 $, data는 # : number값 , concat : 문장연결-->
+	
+	</select>
+	
+	<!-- select * from address where relation like '%친구%' -->
+	
+	
+</mapper>

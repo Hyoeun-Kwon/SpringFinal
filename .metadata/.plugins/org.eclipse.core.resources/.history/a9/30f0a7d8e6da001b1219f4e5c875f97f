@@ -1,0 +1,5 @@
+package com.springlec.base0801quiz.dto;
+
+public class IDto {
+
+}
