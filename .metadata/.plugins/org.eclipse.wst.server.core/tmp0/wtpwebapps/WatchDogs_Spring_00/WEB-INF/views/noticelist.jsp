@@ -272,8 +272,8 @@ $(document).ready(function() {
 			<tr>
 				<td colspan="6" align="center">
 					<!-- 페이징 부분 -->
-					<c:forEach items="${pagelist }" var="page">
-						<a href="noticelist.wd?page=${page }">${page}</a>
+					<c:forEach items="${pageList }" var="page">
+						<a href="noticelist?page=${page }">${page}</a>
 					</c:forEach>
 				</td>
 	   		</tr>

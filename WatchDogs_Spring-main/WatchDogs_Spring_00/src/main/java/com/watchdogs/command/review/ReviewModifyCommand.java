@@ -1,6 +1,8 @@
 package com.watchdogs.command.review;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.watchdogs.command.home.BCommand_new;
 import com.watchdogs.dao.ReviewDao;
@@ -18,16 +22,69 @@ import com.watchdogs.dto.ReviewDto;
 public class ReviewModifyCommand implements BCommand_new {
 
 	@Override
-	public void execute(SqlSession sqlSession, Model model) {
+	public void execute(SqlSession sqlSession, Model model, HttpSession httpSession) {
 		// TODO Auto-generated method stub
 		System.out.println("ReviewModifyCommand 완료");
+//		Map<String, Object> map = model.asMap();//map : 포장지  // form/action 
+//		//getParameter를 포장한 하나의 보안장치 jsp -> asmap -> request를 풀어야지 .....
+//		HttpServletRequest request = (HttpServletRequest) map.get("request"); // 이때부터 getParameter 쓸 수 있음
+		
 		Map<String, Object> map = model.asMap();//map : 포장지  // form/action 
 		//getParameter를 포장한 하나의 보안장치 jsp -> asmap -> request를 풀어야지 .....
-		HttpServletRequest request = (HttpServletRequest) map.get("request"); // 이때부터 getParameter 쓸 수 있음
+		MultipartHttpServletRequest multirequest = (MultipartHttpServletRequest) map.get("multirequest"); // 이때부터 getParameter 쓸 수 있음
+		
+		// 업로드 되는 저장 위치를 잡아주는것 !
+		String root_path = httpSession.getServletContext().getRealPath("/");
+		String attach_path = "resources/review/";
+		String uploadPath = root_path + attach_path;
+		// * * * * * * * * * * * * * * 
+		
+		// 업로드 위치에 폴더가 없으면 만들어주기 !
+		if(! new File(uploadPath).exists()) {
+			new File(uploadPath).mkdirs();
+		}
+		
+		String saveFilename = null;
+	
+		MultipartFile mf = multirequest.getFile("uploadFile");
+		
+		// 첨부하는 이미지파일의 원래 파일명 
+		String originFileName = mf.getOriginalFilename();
+		// 첨부하는 이미지파일의 크기 가져오기
+		long fileSize = mf.getSize();
+		
+		// file upload check
+        if(fileSize != 0) {
+	        saveFilename = System.currentTimeMillis() + originFileName; // 저장될 파일명
+	        String saveFile = uploadPath + saveFilename;
+	        
+	        try {
+	        	mf.transferTo(new File(saveFile));
+	        }catch (IllegalStateException e) {
+	        	e.printStackTrace();
+	        } catch (IOException e) {
+	        	e.printStackTrace();
+	        }
+	        
+        } else {
+        	saveFilename = multirequest.getParameter("oldFilePath");
+        }
+		
 		
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		dao.review_modify(Integer.parseInt(request.getParameter("reid")), request.getParameter("retitle"), request.getParameter("recontent"), request.getParameter("refilepath"));
+		dao.review_modify(Integer.parseInt(multirequest.getParameter("reid")), 
+										   multirequest.getParameter("retitle"), 
+										   multirequest.getParameter("recontent"), 
+										   saveFilename);
 	
+		
+		
+		
+		
+		
+		
+		
+		
 	}//execute
 
 	

@@ -1,6 +1,7 @@
 package com.watchdogs.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,10 @@ public class NoticeController {
 	public String noticeList(HttpServletRequest request, Model model) {
 		
 		System.out.println("NoticeController_noticeList 진입");
+		HttpSession httpSession = request.getSession();
+		model.addAttribute("request", request);
 		command = new NoticeListCommand();
-		command.execute(sqlSession, model);
+		command.execute(sqlSession, model, httpSession);
 		
 		return "noticelist";
 	}
@@ -41,10 +44,10 @@ public class NoticeController {
 	
 //		NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
 //		model.addAttribute("noticedetail", dao.noticedetail(Integer.parseInt(request.getParameter("noid"))));
-		
+		HttpSession httpSession = request.getSession();
 		model.addAttribute("request", request);
 		command = new NoticeDetailViewCommand();
-		command.execute(sqlSession,model);
+		command.execute(sqlSession,model, httpSession);
 		
 		return "notice_detailview";
 

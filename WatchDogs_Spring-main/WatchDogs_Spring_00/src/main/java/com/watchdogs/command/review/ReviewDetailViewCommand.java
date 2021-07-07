@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ import com.watchdogs.dto.ReviewDto;
 public class ReviewDetailViewCommand implements BCommand_new {
 
 	@Override
-	public void execute(SqlSession sqlSession, Model model) {
+	public void execute(SqlSession sqlSession, Model model, HttpSession httpSession) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("RiviewDetailViewCommand 성공");
@@ -23,6 +24,9 @@ public class ReviewDetailViewCommand implements BCommand_new {
 		HttpServletRequest request = (HttpServletRequest) map.get("request"); 
 		
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
+		dao.countHit(Integer.parseInt(request.getParameter("reid")));
+		
+		
 		model.addAttribute("reviewdetail", dao.reviewdetail(Integer.parseInt(request.getParameter("reid"))));
 
 	}//execute

@@ -251,7 +251,7 @@ $(document).ready(function() {
 			
 			<tr>
 				<td>사진</td>
-				<td colspan="3"><img width="350" src="review/${reviewdetail.refilepath }"></td>
+				<td colspan="3"><img width="350" src="${pageContext.request.contextPath }/resources/review/${reviewdetail.refilepath}"></td>
 			</tr> 
 
 			<tr>

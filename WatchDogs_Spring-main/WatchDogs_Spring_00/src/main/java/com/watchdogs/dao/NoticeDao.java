@@ -14,10 +14,13 @@ import com.watchdogs.dto.NoticeDto;
 public interface NoticeDao {
 	
 	// 전체 검색 
-	public ArrayList<NoticeDto> noticelist();
+	public ArrayList<NoticeDto> noticelist(int requestPage, int numOfTuplePerPage);
 	
 	//화면
 	public NoticeDto noticedetail(int noid);
+	
+	//페이징 줄 세기
+	public int countTotalRows();
 		
 	
 	//public ArrayList<NoticeDto> listDao();	

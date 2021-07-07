@@ -15,7 +15,7 @@ import com.watchdogs.dto.ReviewDto;
 public interface ReviewDao {
 	
 	// 전체 검색 
-	public ArrayList<ReviewDto> reviewlist();
+	public ArrayList<ReviewDto> reviewlist(int requestPage, int numOfTuplePerPage);
 	
 	//입력
 	public void review_write(String retitle, String recontent, String redate, String userid, String refilepath);
@@ -28,6 +28,12 @@ public interface ReviewDao {
 	
 	//삭제
 	public void review_delete(int reid);
+	
+	//페이징 줄 세기
+	public int countTotalRows();
+	
+	// 조회수 
+	public int countHit(int reid);
 	
 //	//조건 검색 
 //			public ArrayList<IDto> listQuery(String query, String content);

@@ -7,7 +7,7 @@
  <mapper namespace="com.watchdogs.dao.ReviewDao">
  
 	 <select id="reviewlist" resultType="com.watchdogs.dto.ReviewDto">
-		SELECT REID, REHIT, USERID, RETITLE, RECONTENT, REDATE, REDELDATE FROM REVIEW 
+		SELECT REID, REHIT, USERID, RETITLE, RECONTENT, REDATE, REDELDATE FROM REVIEW WHERE REDELDATE IS NULL ORDER BY REID DESC LIMIT #{param1}, #{param2}
 		 <!-- SELECT * FROM REVIEW  -->
 	 </select>
 	 
@@ -33,10 +33,17 @@
 		<!-- DELETE FROM REVIEW WHERE REID = #{param1} -->
 	</update>
 	
+	<select id="countTotalRows" resultType="int">
+		SELECT COUNT(*) FROM REVIEW WHERE REDELDATE IS NULL
+	</select>
 	<!-- <select id="listQuery" parameterType="String" resultType="com.springlec.base0801quiz.dto.IDto">
 		SELECT * FROM USERINFO WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
 		colomn 은 $, data는 # : number값 , concat : 문장연결
 	
 	</select>  -->
+	
+	<update id="countHit">
+		UPDATE REVIEW SET REHIT = REHIT + 1 WHERE REID = #{param1}
+	</update>
 	
  </mapper>

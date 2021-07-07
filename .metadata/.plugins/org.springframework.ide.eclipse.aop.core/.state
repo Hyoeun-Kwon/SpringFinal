@@ -3,5 +3,6 @@
 <aop-project name="Spring0801Quiz"/>
 <aop-project name="Spring0701"/>
 <aop-project name="Spring0801"/>
+<aop-project name="WatchDogs_Spring_00"/>
 <aop-project name="OneLineBoard"/>
 </aop-reference-model>

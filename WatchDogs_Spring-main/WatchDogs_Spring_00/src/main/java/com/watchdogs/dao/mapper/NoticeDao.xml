@@ -6,7 +6,7 @@
 <mapper namespace="com.watchdogs.dao.NoticeDao">
  
 	 <select id="noticelist" resultType="com.watchdogs.dto.NoticeDto">
-		SELECT NOID, ADID, NOTITLE, NOCONTENT, NODATE, NOHIT, NODELDATE FROM NOTICE
+		SELECT NOID, ADID, NOTITLE, NOCONTENT, NODATE, NOHIT, NODELDATE FROM NOTICE WHERE NODELDATE IS NULL ORDER BY NOID DESC LIMIT #{param1}, #{param2}
 		 <!-- SELECT * FROM REVIEW  -->
 	 </select>  
 	 
@@ -16,4 +16,7 @@
 		<!-- SELECT * FROM REVIEW WHERE REID = #{param1} --> 
 	</select> 
 	
+	<select id="countTotalRows" resultType="int">
+		SELECT COUNT(*) FROM NOTICE WHERE NODELDATE IS NULL
+	</select>
 </mapper>

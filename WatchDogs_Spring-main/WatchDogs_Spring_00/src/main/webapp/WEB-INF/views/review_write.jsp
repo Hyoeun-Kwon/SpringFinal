@@ -231,7 +231,7 @@ $(document).ready(function() {
 
 <!-- 테이블시작 ----------------------------------------> 
 	 <table border="1" width="600">
-		<form name="writeForm"  action="review_write" method="post">
+		<form name="writeForm"  action="review_write" method="post" enctype="multipart/form-data">
 			<thead>
 				<tr>
 					<th colspan="4" style="background-color: #f5af46; text-align: center; font-size:18px;">후기글 작성</th>
@@ -250,7 +250,7 @@ $(document).ready(function() {
 					
 					<tr>
 						<td>파일 첨부</td>
-						<td colspan="3"><input type="file" name="file"> 
+						<td colspan="3"><input type="file" name="uploadFile"> 
 		 			</tr>
 		
 		

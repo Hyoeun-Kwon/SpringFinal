@@ -216,7 +216,7 @@ $(document).ready(function() {
 	
 <!-- 테이블 시작 ---------------------------------------->
 	 <table border="1" width="600" >
-		 <form action="reviewmodify" method="post" >
+		 <form action="reviewmodify" method="post" enctype="multipart/form-data">
 		 	<input type="hidden" name="reid" value="${reviewdetail.reid}">
 				<thead>
 					<tr>
@@ -246,12 +246,13 @@ $(document).ready(function() {
 					
 					<tr>
 						<td>사진</td>
-						<td colspan="3"><img class="imgClass" width="350"  src="review/${reviewdetail.refilepath }"></td>
+						<td colspan="3"><img class="imgClass" width="350" src="${pageContext.request.contextPath }/resources/review/${reviewdetail.refilepath}"></td>
 					</tr> 
 					
 					<tr>
 					<td>이미지 수정</td>
-						<td colspan="3">	<input class="file" type="file" name="file"> </td>		
+						<input type="hidden" name="oldFilePath" value="${reviewdetail.refilepath }">
+						<td colspan="3">	<input class="file" type="file" name="uploadFile"> </td>		
 					</tr>	
 					
 					<tr>
