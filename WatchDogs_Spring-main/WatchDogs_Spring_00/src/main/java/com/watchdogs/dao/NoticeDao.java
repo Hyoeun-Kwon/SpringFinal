@@ -22,8 +22,15 @@ public interface NoticeDao {
 	//페이징 줄 세기
 	public int countTotalRows();
 		
-	
+	// 조회수 
+	public int countHit(int reid);
 	//public ArrayList<NoticeDto> listDao();	
+	
+	//조건 검색 
+	public ArrayList<NoticeDto> noticeListQuery(String searchCategory, String searchWord, int requestPage, int numOfTuplePerPage);
+	
+	//조건 검색 페이징 줄 세기
+	public int listQueryCountTotalRows(String searchCategory, String searchWord);
 	
 //	DataSource dataSource;
 //	public NoticeDao() {

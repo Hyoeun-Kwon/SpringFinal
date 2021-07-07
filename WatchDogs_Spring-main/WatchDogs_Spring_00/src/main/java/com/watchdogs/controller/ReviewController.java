@@ -16,6 +16,7 @@ import com.watchdogs.command.home.BCommand_new;
 import com.watchdogs.command.review.ReviewDeleteCommand;
 import com.watchdogs.command.review.ReviewDetailViewCommand;
 import com.watchdogs.command.review.ReviewListCommand;
+import com.watchdogs.command.review.ReviewListQueryCommand;
 import com.watchdogs.command.review.ReviewMdViewCommand;
 import com.watchdogs.command.review.ReviewModifyCommand;
 import com.watchdogs.command.review.ReviewWriteCommand;
@@ -121,5 +122,17 @@ public class ReviewController {
 		return "redirect:reviewlist";
 	}
 	
+	//조건 검색
+	@RequestMapping("/reviewlistquery")
+	public String reviewListQuery(HttpServletRequest request, Model model) {
+		HttpSession httpSession = request.getSession();
+		
+		model.addAttribute("request", request);
+		
+		command = new ReviewListQueryCommand();
+		command.execute(sqlSession, model, httpSession);
+		
+		return "reviewlist";
+	}
 
 }//---------

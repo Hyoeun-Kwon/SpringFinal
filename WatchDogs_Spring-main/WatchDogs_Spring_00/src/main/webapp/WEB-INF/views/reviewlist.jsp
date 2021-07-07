@@ -223,11 +223,11 @@ $(document).ready(function() {
 		<!-- 검색창 ---------------------------------------->
 	<div class="row" style="clear:right;width:500px; float:right;">
 		<div class="col-lg-12">
-			<form id="searchForm" action="reviewlist.wd" method="post">
+			<form id="searchForm" action="reviewlistquery" method="post">
 				<select name="searchCategory">
-					<option value="all">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
+					<!-- <option value="all">전체</option> -->
+					<option value="retitle">제목</option>
+					<option value="recontent">내용</option>
 				</select>
 				<input type="text"  id="searchWord" name="searchWord" value="" placeholder="검색어를 입력해주세요"/>
 				<input type="submit" value="검색" >
@@ -269,8 +269,8 @@ $(document).ready(function() {
 				<tr class="line">
 					<td style="cursor: not-allowed">${ReviewDto.reid}</td>
 					<td style="cursor: not-allowed">${ReviewDto.userid}</td>
-					<td ><a href="reviewdetail.wd?reid=${ReviewDto.reid}">${ReviewDto.retitle}</a></td>
-					<td ><a href="reviewdetail.wd?reid=${ReviewDto.reid}">${ReviewDto.recontent}</a></td>
+					<td ><a href="reviewdetail?reid=${ReviewDto.reid}">${ReviewDto.retitle}</a></td>
+					<td ><a href="reviewdetail?reid=${ReviewDto.reid}">${ReviewDto.recontent}</a></td>
 					<td style="cursor: not-allowed">${ReviewDto.redate}</td>
 					<td style="cursor: not-allowed">${ReviewDto.rehit}</td>
 			
@@ -290,7 +290,7 @@ $(document).ready(function() {
 	   		</tr>
 		</tbody>			
 	</table>
-			<a onClick="location.href='review.wd'" style="float:right">글쓰기</a>
+			<a onClick="location.href='review'" style="float:right">글쓰기</a>
 	
 	
  		</div>

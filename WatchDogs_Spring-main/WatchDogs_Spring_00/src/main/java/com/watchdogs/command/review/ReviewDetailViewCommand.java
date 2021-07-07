@@ -25,9 +25,8 @@ public class ReviewDetailViewCommand implements BCommand_new {
 		
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
 		dao.countHit(Integer.parseInt(request.getParameter("reid")));
-		
-		
-		model.addAttribute("reviewdetail", dao.reviewdetail(Integer.parseInt(request.getParameter("reid"))));
+			
+		model.addAttribute("reviewdetail", dao.reviewDetail(Integer.parseInt(request.getParameter("reid"))));
 
 	}//execute
 

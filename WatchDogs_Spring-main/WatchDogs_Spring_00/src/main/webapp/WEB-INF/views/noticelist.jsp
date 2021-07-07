@@ -215,11 +215,11 @@ $(document).ready(function() {
 		<!-- 검색창 ---------------------------------------->
 	<div class="row" style="clear:right;width:500px; float: right;">
 		<div class="col-lg-12">
-			<form id="searchForm" action="noticelist.wd" method="post">
+			<form id="searchForm" action="noticelistquery" method="post">
 				<select name="searchCategory">
-					<option value="all">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
+					<!-- <option value="all">전체</option> -->
+					<option value="notitle">제목</option>
+					<option value="nocontent">내용</option>
 				</select>
 				<input type="text" id="searchWord" name="searchWord" value="" placeholder="검색어를 입력해주세요"/>
 				<input type="submit" value="검색">

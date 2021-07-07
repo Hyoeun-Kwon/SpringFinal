@@ -249,7 +249,7 @@ $(document).ready(function() {
 			
 			
 	</table> <br>
-	<div id="button" onClick="location.href='reviewlist.wd'" style="cursor: pointer"><b>목록으로</b></div>
+	<div id="button" onClick="location.href='noticelist'" style="cursor: pointer"><b>목록으로</b></div>
 
 
 	</div>

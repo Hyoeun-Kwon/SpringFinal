@@ -50,7 +50,7 @@ public class ReviewListCommand implements BCommand_new {
 		model.addAttribute("pageList", pageList);
 		
 		//----------query문 완료
-		model.addAttribute("reviewlist",dao.reviewlist(offset, numOfTuplesPerPage));
+		model.addAttribute("reviewlist",dao.reviewList(offset, numOfTuplesPerPage));
 		
 	}//execute
 

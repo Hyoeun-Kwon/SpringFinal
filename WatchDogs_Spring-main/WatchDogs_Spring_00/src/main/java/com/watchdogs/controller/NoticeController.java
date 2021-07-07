@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.watchdogs.command.home.BCommand_new;
 import com.watchdogs.command.notice.NoticeDetailViewCommand;
 import com.watchdogs.command.notice.NoticeListCommand;
+import com.watchdogs.command.notice.NoticeListQueryCommand;
 import com.watchdogs.command.review.ReviewDetailViewCommand;
 import com.watchdogs.command.review.ReviewListCommand;
+import com.watchdogs.command.review.ReviewListQueryCommand;
 import com.watchdogs.dao.NoticeDao;
 import com.watchdogs.dao.ReviewDao;
 
@@ -53,6 +55,16 @@ public class NoticeController {
 
 	}
 
+	//조건 검색
+	@RequestMapping("/noticelistquery")
+	public String noticeListQuery(HttpServletRequest request, Model model) {
+		HttpSession httpSession = request.getSession();	
+		model.addAttribute("request", request);
+		command = new NoticeListQueryCommand();
+		command.execute(sqlSession, model, httpSession);
+		
+		return "noticelist";
+	}
 
 	
 	

@@ -6,7 +6,7 @@
  
  <mapper namespace="com.watchdogs.dao.ReviewDao">
  
-	 <select id="reviewlist" resultType="com.watchdogs.dto.ReviewDto">
+	 <select id="reviewList" resultType="com.watchdogs.dto.ReviewDto">
 		SELECT REID, REHIT, USERID, RETITLE, RECONTENT, REDATE, REDELDATE FROM REVIEW WHERE REDELDATE IS NULL ORDER BY REID DESC LIMIT #{param1}, #{param2}
 		 <!-- SELECT * FROM REVIEW  -->
 	 </select>
@@ -16,7 +16,7 @@
 			<!-- INSERT INTO USERINFO (NAME, TELNO, ADDRESS, EMAIL, RELATION) VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5}) -->
 	</insert>
 		
-	<select id="reviewdetail" resultType="com.watchdogs.dto.ReviewDto">
+	<select id="reviewDetail" resultType="com.watchdogs.dto.ReviewDto">
 	SELECT REID, USERID, REHIT, RETITLE, REDATE, RECONTENT, REFILEPATH FROM REVIEW WHERE REID = #{param1} 
 		<!-- SELECT * FROM REVIEW WHERE REID = #{param1}  -->
 	</select>
@@ -41,9 +41,19 @@
 		colomn 은 $, data는 # : number값 , concat : 문장연결
 	
 	</select>  -->
-	
+	<!-- 조회수 -->
 	<update id="countHit">
 		UPDATE REVIEW SET REHIT = REHIT + 1 WHERE REID = #{param1}
 	</update>
+	
+	<!-- 조건검색 -->
+	<select id="reviewListQuery" resultType="com.watchdogs.dto.ReviewDto">
+		SELECT REID, REHIT, USERID, RETITLE, RECONTENT, REDATE, REDELDATE FROM REVIEW WHERE REDELDATE IS NULL AND ${param1} LIKE CONCAT('%',#{param2},'%') ORDER BY REID DESC LIMIT #{param3}, #{param4}
+	 </select>
+	<!-- select * from address where relation like '%친구%' -->
+	
+	<select id="listQueryCountTotalRows" resultType="int">
+		SELECT COUNT(*) FROM REVIEW WHERE REDELDATE IS NULL AND ${param1} LIKE CONCAT('%',#{param2},'%')
+	</select>
 	
  </mapper>

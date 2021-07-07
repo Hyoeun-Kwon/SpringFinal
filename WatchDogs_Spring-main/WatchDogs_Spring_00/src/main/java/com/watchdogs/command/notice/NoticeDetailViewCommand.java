@@ -23,6 +23,7 @@ public class NoticeDetailViewCommand implements BCommand_new {
 		HttpServletRequest request = (HttpServletRequest) map.get("request"); 
 		
 		NoticeDao dao = sqlSession.getMapper(NoticeDao.class);
+		dao.countHit(Integer.parseInt(request.getParameter("noid")));
 		model.addAttribute("noticedetail", dao.noticedetail(Integer.parseInt(request.getParameter("noid"))));
 	
 	}//execute

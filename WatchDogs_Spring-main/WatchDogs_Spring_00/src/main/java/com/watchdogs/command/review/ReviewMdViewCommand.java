@@ -23,7 +23,7 @@ public class ReviewMdViewCommand implements BCommand_new {
 		HttpServletRequest request = (HttpServletRequest) map.get("request"); 
 		
 		ReviewDao dao = sqlSession.getMapper(ReviewDao.class);
-		model.addAttribute("reviewdetail", dao.reviewdetail(Integer.parseInt(request.getParameter("reid"))));
+		model.addAttribute("reviewdetail", dao.reviewDetail(Integer.parseInt(request.getParameter("reid"))));
 		
 	}//execute
 

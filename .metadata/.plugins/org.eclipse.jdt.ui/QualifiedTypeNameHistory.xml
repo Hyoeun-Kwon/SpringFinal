@@ -42,4 +42,7 @@
     <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartHttpServletRequest"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.watchdogs.dao.ReviewDao"/>
+    <fullyQualifiedTypeName name="com.watchdogs.command.review.ReviewListQueryCommand"/>
+    <fullyQualifiedTypeName name="com.watchdogs.command.notice.NoticeListQueryCommand"/>
 </qualifiedTypeNameHistroy>
